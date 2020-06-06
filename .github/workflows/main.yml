@@ -22,12 +22,12 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Setup Node.js environment
+    - name: Install NodeJS
       uses: actions/setup-node@v2-beta
       with:
         version: 12
-    - name: action-yarn
-      uses: Borales/action-yarn@v2.1.0
+    - name: GitHub Action for Yarn
+      uses:  Borales/actions-yarn@v2.1.0
       with:
         cmd: install
     - name: creating build
@@ -37,4 +37,4 @@ jobs:
     - name: installing surge
       run:  npm install -g surge
     - name: deploying on surge  
-      run: surge ./build  http://maa.surge.sh/ ${{ secrets.MAA }}
+      run: surge ./build  http://maa.surge.sh/ --token ${{ secrets.MAA }}
